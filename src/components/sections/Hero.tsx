@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Cloud, Database, Rocket, BarChart3, Bot, ArrowRight } from 'lucide-react';
@@ -15,32 +16,20 @@ const highlights = [
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow delay-1000" />
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
-        
-        {/* Floating Elements */}
-        <motion.div
-          animate={{ y: [-20, 20, -20] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/3 right-1/4 w-4 h-4 bg-cyan-400/40 rounded-full blur-sm"
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80"
+          alt="Digital technology background"
+          fill
+          className="object-cover opacity-20"
+          priority
         />
-        <motion.div
-          animate={{ y: [20, -20, 20] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-2/3 right-1/3 w-3 h-3 bg-primary-400/40 rounded-full blur-sm"
-        />
-        <motion.div
-          animate={{ y: [-15, 15, -15] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-1/2 left-1/4 w-2 h-2 bg-white/20 rounded-full blur-sm"
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/90 to-navy-950" />
       </div>
+      
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -93,78 +82,42 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Content - Abstract Visual */}
+          {/* Right Content - Professional Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            {/* Main Visual Container */}
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              {/* Central Node */}
+            <div className="relative w-full aspect-[4/3] max-w-xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1000&q=80"
+                alt="Team of IT professionals working on cloud solutions"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />
+              
+              {/* Floating Stats Cards */}
               <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-3xl shadow-2xl shadow-primary-500/30 flex items-center justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-3"
               >
-                <span className="text-white text-4xl font-bold">V</span>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
+                  <div className="text-2xl font-bold text-cyan-400">99.9%</div>
+                  <div className="text-xs text-gray-300">Uptime SLA</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
+                  <div className="text-2xl font-bold text-cyan-400">500+</div>
+                  <div className="text-xs text-gray-300">Clients Served</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20">
+                  <div className="text-2xl font-bold text-cyan-400">24/7</div>
+                  <div className="text-xs text-gray-300">Expert Support</div>
+                </div>
               </motion.div>
-
-              {/* Orbiting Elements */}
-              {highlights.map((item, index) => {
-                const angle = (index * 360) / highlights.length;
-                const radius = 180;
-                const x = Math.cos((angle * Math.PI) / 180) * radius;
-                const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-                return (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    className="absolute top-1/2 left-1/2"
-                    style={{
-                      transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                    }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-14 h-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl flex items-center justify-center cursor-pointer hover:bg-white/20 transition-colors"
-                    >
-                      <item.icon className="w-6 h-6 text-cyan-400" />
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-
-              {/* Connection Lines */}
-              <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-                {highlights.map((_, index) => {
-                  const angle = (index * 360) / highlights.length;
-                  const radius = 180;
-                  const x = Math.cos((angle * Math.PI) / 180) * radius;
-                  const y = Math.sin((angle * Math.PI) / 180) * radius;
-                  const centerX = 256;
-                  const centerY = 256;
-
-                  return (
-                    <motion.line
-                      key={index}
-                      x1={centerX}
-                      y1={centerY}
-                      x2={centerX + x}
-                      y2={centerY + y}
-                      stroke="rgba(6, 182, 212, 0.2)"
-                      strokeWidth="1"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                    />
-                  );
-                })}
-              </svg>
             </div>
           </motion.div>
         </div>

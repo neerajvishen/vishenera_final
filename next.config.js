@@ -4,7 +4,14 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   images: {
-    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
   headers: async () => [

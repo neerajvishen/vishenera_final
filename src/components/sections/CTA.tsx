@@ -1,14 +1,22 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar } from 'lucide-react';
 
 export default function CTA() {
   return (
-    <section className="section-padding bg-gradient-to-br from-navy-800 to-navy-950 relative overflow-hidden">
-      {/* Background Elements */}
+    <section className="section-padding relative overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=2000&q=80"
+          alt="Modern office technology background"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-navy-950/90" />
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
       </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Cloud, Database, Rocket, BarChart3, Bot, RefreshCw, ArrowRight } from 'lucide-react';
@@ -12,6 +13,7 @@ const services = [
     features: ['Infrastructure as Code', 'Cost Optimization', 'Multi-Cloud Management', 'Security & Compliance'],
     href: '/services/cloudops',
     color: 'from-blue-500 to-cyan-500',
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
   },
   {
     icon: Database,
@@ -20,6 +22,7 @@ const services = [
     features: ['Performance Tuning', 'Automated Backups', 'Security Hardening', 'High Availability'],
     href: '/services/dbops',
     color: 'from-purple-500 to-pink-500',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
   },
   {
     icon: Rocket,
@@ -28,6 +31,7 @@ const services = [
     features: ['CI/CD Pipelines', 'Zero-Downtime Deployments', 'Auto-Scaling', 'Release Management'],
     href: '/services/appops',
     color: 'from-orange-500 to-red-500',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80',
   },
   {
     icon: BarChart3,
@@ -36,6 +40,7 @@ const services = [
     features: ['Real-time Monitoring', 'Log Aggregation', 'Intelligent Alerting', 'SLA Dashboards'],
     href: '/services/observability',
     color: 'from-green-500 to-emerald-500',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
   },
   {
     icon: Bot,
@@ -44,6 +49,7 @@ const services = [
     features: ['Custom AI Chatbots', 'Process Automation', 'AI-Powered Support', 'Workflow Optimization'],
     href: '/services/ai-automation',
     color: 'from-cyan-500 to-blue-500',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80',
   },
   {
     icon: RefreshCw,
@@ -52,6 +58,7 @@ const services = [
     features: ['Digital Strategy', 'Legacy Modernization', 'Process Automation', 'Change Management'],
     href: '/services/digital-transformation',
     color: 'from-indigo-500 to-purple-500',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80',
   },
 ];
 
@@ -86,34 +93,45 @@ export default function Services() {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <service.icon className="w-7 h-7 text-white" />
+              <div className="h-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                {/* Image */}
+                <div className="relative h-40 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 to-transparent" />
+                  <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center`}>
+                    <service.icon className="w-6 h-6 text-white" />
+                  </div>
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">{service.description}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
+                  <p className="text-gray-400 mb-4 leading-relaxed text-sm">{service.description}</p>
 
-                {/* Features */}
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-sm text-gray-300">
-                      <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                  {/* Features */}
+                  <ul className="space-y-2 mb-4">
+                    {service.features.slice(0, 3).map((feature) => (
+                      <li key={feature} className="flex items-center text-sm text-gray-300">
+                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mr-3" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
 
-                {/* Link */}
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center text-cyan-400 hover:text-cyan-300 text-sm font-medium group/link"
-                >
-                  Learn More
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
+                  {/* Link */}
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center text-cyan-400 hover:text-cyan-300 text-sm font-medium group/link"
+                  >
+                    Learn More
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}

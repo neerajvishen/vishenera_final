@@ -33,9 +33,9 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: vishenera-cloudflared
     restart: unless-stopped
-    command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=${CF_TUNNEL_TOKEN:-}
+    command: tunnel --no-autoupdate run --token ${CF_TUNNEL_TOKEN}
+    env_file:
+      - .env.local
     networks:
       - vishenera-network
     depends_on:
