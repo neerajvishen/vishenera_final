@@ -39,13 +39,13 @@ const team = [
   {
     name: 'Neeraj Vishen',
     role: 'Founder & CEO',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    image: '/teams/Neeraj.jpeg',
     description: 'Visionary leader with 15+ years in cloud and enterprise technology.',
   },
   {
     name: 'Ayushee P',
     role: 'Co-Founder & COO',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+    image: '/teams/Ayushee.png',
     description: 'Operations expert specializing in digital transformation and AI.',
   },
   {
