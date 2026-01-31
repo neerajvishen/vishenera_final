@@ -4,6 +4,8 @@ import nodemailer from 'nodemailer';
 // Email recipients for contact form notifications
 const NOTIFICATION_EMAILS = [
   'neeraj.vishen@gmail.com',
+  'neeraj@clouderalabs.com',
+  'neeraj@nervescape.com',
   'ayushee2290@gmail.com'
 ];
 
